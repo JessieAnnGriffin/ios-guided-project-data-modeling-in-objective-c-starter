@@ -10,8 +10,15 @@
 
 @interface Quakes_ObjcTests : XCTestCase
 
+
+
 @end
 
 @implementation Quakes_ObjcTests
+
+- (void)testQuakeParsing
+{
+    
+}
 
 @end
