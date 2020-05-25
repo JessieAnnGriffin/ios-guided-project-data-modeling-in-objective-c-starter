@@ -10,6 +10,12 @@
 
 @implementation FirstResponder
 
-
+- (void)setName:(NSString *)name
+{
+    // willSet
+    _name = name.copy; // same as [name copy];
+    // didSet
+    
+}
 
 @end
