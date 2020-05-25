@@ -10,12 +10,19 @@
 
 @implementation FirstResponder
 
+@synthesize name = _name; // the equals sign here is not assigning but specifying that _name is connected to the name property
+
 - (void)setName:(NSString *)name
 {
     // willSet
     _name = name.copy; // same as [name copy];
     // didSet
-    
+
+}
+
+- (NSString *)name
+{
+    return _name;
 }
 
 @end
