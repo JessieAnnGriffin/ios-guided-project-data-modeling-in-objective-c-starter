@@ -37,7 +37,9 @@
     if (![properties isKindOfClass:[NSDictionary class]]) return nil;
 
     NSNumber *magnitudeNumber = [properties objectForKey:@"mag"];
-    if (![magnitudeNumber isKindOfClass:[NSNumber class]]) return nil;
+    if ([magnitudeNumber isKindOfClass:[NSNull class]]) {
+        magnitudeNumber = nil;
+    } else if (![magnitudeNumber isKindOfClass:[NSNumber class]]) return nil;
 
     NSString *place = [properties objectForKey:@"place"];
     if (![place isKindOfClass:[NSString class]]) return nil;
@@ -54,9 +56,18 @@
     NSNumber *latitudeNumber = nil;
     NSNumber *longitudeNumber = nil;
 
+    NSString *alert = [properties objectForKey:@"alert"];
+    if ([alert isKindOfClass:[NSNull class]]) {
+        alert = nil;
+    } else if (![alert isKindOfClass:[NSString class]]) return nil;
+
+    NSString *type = [properties objectForKey:@"type"];
+    if (![type isKindOfClass:[NSString class]]) return nil;
+
+
     if (coordinates.count >= 2) {
-        latitudeNumber = [coordinates objectAtIndex:0];
-        longitudeNumber = [coordinates objectAtIndex:1];
+        latitudeNumber = [coordinates objectAtIndex:1];
+        longitudeNumber = [coordinates objectAtIndex:0];
         if (![latitudeNumber isKindOfClass:[NSNumber class]]) return nil;
         if (![longitudeNumber isKindOfClass:[NSNumber class]]) return nil;
     }
@@ -67,8 +78,8 @@
                               time:time
                           latitude:latitudeNumber.doubleValue
                          longitude:longitudeNumber.doubleValue
-                              type:nil
-                             alert:nil];
+                              type:type
+                             alert:alert];
 }
 
 @end
